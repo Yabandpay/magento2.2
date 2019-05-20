@@ -1,4 +1,4 @@
-# Magento-2
+# Magento 2.2
 The payment extension for Magento 2, support WeChat Pay and Alipay
 
 Magento® 2 use the Composer to manage the module package and the library. Composer is a dependency manager for PHP. Composer declare the libraries your project depends on and it will manage (install/update) them for you.
@@ -24,7 +24,7 @@ Locate the root of your Magento® 2 store.
 
 Enter the command line in your Root and wait as composer will download the extension for you:
 ```shell
-composer require yabandpay/payment
+composer require yabandpay/magento2.2
 ```
 When it’s finished you can activate the extension, clean the caches and deploy the content in your Magento® environment using the following command line;
 ```shell
