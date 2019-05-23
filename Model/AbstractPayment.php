@@ -257,18 +257,13 @@ abstract class AbstractPayment extends AbstractMethod
             $status = $orderInfo['state'];
             if($status == YaBandWechatPayHelper::PAY_PAID && $order->getStatus() !== Payment::PAY_PROCESSING){
                 $processingStatus = $this->yaBandWechatPayHelper->getStatusProcessing();
-                $this->yaBandWechatPayHelper->addTolog('info', 'Pending Status:' . var_export($processingStatus, true));
-                $order->setStatus($processingStatus)
-                    ->setData(Payment::META_TRANSACTION_ID, $orderInfo['transaction_id'])
-                    ->setData(Payment::META_TRADE_ID, $orderInfo['trade_id'])
-                    ->save();
+                $this->yaBandWechatPayHelper->addTolog('info', 'Processing Status:' . var_export($processingStatus, true));
+                $order->setStatus($processingStatus)->save();
                 $order = $this->order->load($orderInfo['order_id']);
                 if($this->yaBandWechatPayHelper->getAuthInvoice()){
                     $this->autoBuildOrderInvoice($order);
                 }
-                if($this->yaBandWechatPayHelper->getAuthSendEmail()){
-                    $this->orderSender->send($order);
-                }
+
                 $msg = [ 'success' => true, 'status' => 'paid', 'order_id' => $orderInfo['order_id'] ];
                 $this->yaBandWechatPayHelper->addTolog('success', $msg);
                 return $msg;
@@ -324,11 +319,13 @@ abstract class AbstractPayment extends AbstractMethod
 
         $transactionSave->save();
         try{
-            $sendStatus = $this->invoiceSender->send($invoice, true);
-            if($sendStatus){
-                $this->yaBandWechatPayHelper->addTolog('info', 'Invoice Send Email Success');
-            }else{
-                $this->yaBandWechatPayHelper->addTolog('error', 'Invoice Send Email Failed');
+            if($this->yaBandWechatPayHelper->getAuthSendEmail()){
+                $sendStatus = $this->invoiceSender->send($invoice, true);
+                if($sendStatus){
+                    $this->yaBandWechatPayHelper->addTolog('info', 'Invoice Send Email Success');
+                }else{
+                    $this->yaBandWechatPayHelper->addTolog('error', 'Invoice Send Email Failed');
+                }
             }
         }catch(\Exception $e){
             $this->yaBandWechatPayHelper->addTolog('info', 'Invoice Send Email:' . $e->getMessage());
