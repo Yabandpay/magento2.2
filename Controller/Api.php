@@ -16,8 +16,8 @@ use Magento\Framework\App\RequestInterface;
 use Magento\Payment\Helper\Data as PaymentHelper;
 use YaBandPay\Payment\Helper\General as YaBandWechatPayHelper;
 use YaBandPay\Payment\Model\WechatPay;
-use YaBandPay\PersiLiao\Cryptography;
-use YaBandPay\PersiLiao\Notify;
+use YaBandPay\Api\Cryptography;
+use YaBandPay\Api\Notify;
 
 abstract class Api extends Controller
 {

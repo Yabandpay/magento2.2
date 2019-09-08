@@ -15,7 +15,7 @@ use Magento\Payment\Helper\Data as PaymentHelper;
 use function var_export;
 use YaBandPay\Payment\Helper\General as YaBandWechatPayHelper;
 use YaBandPay\Payment\Logger\Logger;
-use YaBandPay\PersiLiao\Payment;
+use YaBandPay\Api\Payment;
 
 /**
  * Class PaymentConfigProvider

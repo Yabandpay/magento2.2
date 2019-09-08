@@ -7,7 +7,7 @@ use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Sales\Setup\SalesSetupFactory;
 use YaBandPay\Payment\Helper\General as YaBandWechatPayHelper;
-use YaBandPay\PersiLiao\Payment;
+use YaBandPay\Api\Payment;
 
 class InstallData implements InstallDataInterface
 {

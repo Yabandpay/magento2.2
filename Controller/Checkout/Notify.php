@@ -13,7 +13,7 @@ namespace YaBandPay\Payment\Controller\Checkout;
 use Magento\Framework\Controller\Result\Raw;
 use Magento\Framework\Controller\ResultFactory;
 use YaBandPay\Payment\Controller\Api;
-use YaBandPay\PersiLiao\Response;
+use YaBandPay\Api\Response;
 
 class Notify extends Api
 {

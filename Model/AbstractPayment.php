@@ -23,7 +23,7 @@ use Magento\Sales\Model\OrderRepository;
 use Magento\Sales\Model\Service\InvoiceService;
 use Magento\Store\Model\StoreManagerInterface;
 use YaBandPay\Payment\Helper\General as YaBandWechatPayHelper;
-use YaBandPay\PersiLiao\Payment;
+use YaBandPay\Api\Payment;
 use function var_export;
 
 /**

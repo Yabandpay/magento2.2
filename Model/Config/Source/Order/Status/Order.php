@@ -7,7 +7,7 @@
 namespace YaBandPay\Payment\Model\Config\Source\Order\Status;
 
 
-use YaBandPay\PersiLiao\Payment;
+use YaBandPay\Api\Payment;
 
 /**
  * Order Status source model
