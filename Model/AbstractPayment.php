@@ -248,7 +248,9 @@ abstract class AbstractPayment extends AbstractMethod
     public function processTransaction(array $orderInfo)
     {
         try{
-            $order = $this->order->load($orderInfo['order_id']);
+            $order_increment_id = (json_decode($orderInfo['demo']))->magento_order_id;
+
+            $order = $this->order->load($order_increment_id);
             if(empty($order)){
                 $msg = [ 'error' => true, 'msg' => __('Order not found') ];
                 $this->yaBandWechatPayHelper->addTolog('error', $msg);
@@ -259,7 +261,7 @@ abstract class AbstractPayment extends AbstractMethod
                 $processingStatus = $this->yaBandWechatPayHelper->getStatusProcessing();
                 $this->yaBandWechatPayHelper->addTolog('info', 'Processing Status:' . var_export($processingStatus, true));
                 $order->setStatus($processingStatus)->save();
-                $order = $this->order->load($orderInfo['order_id']);
+                $order = $this->order->load($order_increment_id);
                 if($this->yaBandWechatPayHelper->getAuthInvoice()){
                     $this->autoBuildOrderInvoice($order);
                 }
@@ -308,6 +310,9 @@ abstract class AbstractPayment extends AbstractMethod
         $invoice->getOrder()->setCustomerNoteNotify(true);
         $invoice->getOrder()->setIsInProcess(true);
         $invoice->setSendEmail(true);
+
+        // 捕获发票
+        $invoice->capture($invoice->getEntityId());
 
         $transactionSave = $this->objectManager->create(
             \Magento\Framework\DB\Transaction::class

@@ -269,7 +269,17 @@ class General extends AbstractHelper
         $description = $this->getOrderProduct($order);
         $notifyUrl = $this->getNotifyUrl();
         $redirectUrl = $this->getRedirectUrl();
-        return $this->getApiInstance()->payment($paymentMethod, $order->getId(), $orderTotalAmount, $this->getPayCurrency(), $description, $redirectUrl, $notifyUrl);
+        return $this->getApiInstance()->payment(
+            $paymentMethod,
+            $order->getIncrementId(),
+            $orderTotalAmount,
+            $this->getPayCurrency(),
+            $description,
+            $redirectUrl,
+            $notifyUrl,
+            0,
+            json_encode(['magento_order_id' => $order->getId()])
+        );
     }
 
     protected function getOrderProduct(Order $order)
