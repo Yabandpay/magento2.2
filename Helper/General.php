@@ -269,17 +269,25 @@ class General extends AbstractHelper
         $description = $this->getOrderProduct($order);
         $notifyUrl = $this->getNotifyUrl();
         $redirectUrl = $this->getRedirectUrl();
-        return $this->getApiInstance()->payment(
-            $paymentMethod,
-            $order->getIncrementId(),
-            $orderTotalAmount,
-            $this->getPayCurrency(),
-            $description,
-            $redirectUrl,
-            $notifyUrl,
-            0,
-            json_encode(['magento_order_id' => $order->getId()])
-        );
+
+        try {
+            $pay_url = $this->getApiInstance()->payment(
+                $paymentMethod,
+                $order->getIncrementId(),
+                $orderTotalAmount,
+                $this->getPayCurrency(),
+                $description,
+                $redirectUrl,
+                $notifyUrl,
+                0,
+                json_encode(['magento_order_id' => $order->getId()])
+            );
+        } catch (\Exception $e){
+            $error_hint_url = 'https://partner.yabandpay.com/payments/error?message='.\urlencode($e->getMessage());
+            return $error_hint_url;
+        }
+
+        return $pay_url;
     }
 
     protected function getOrderProduct(Order $order)
