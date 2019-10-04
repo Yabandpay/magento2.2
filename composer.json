@@ -2,7 +2,6 @@
   "name": "yabandpayment/magento2.2",
   "description": "YaBand Payment Module for Magento 2",
   "require": {
-    "php": ">=5.5",
     "ext-json": "*",
     "yabandpayment/api": "^1.0"
   },
