@@ -109,6 +109,38 @@ class PaymentConfigProvider implements ConfigProviderInterface
             $config['payment'][AliPay::CODE]['isActive'] = false;
         }
 
+        $activeiDeal = $this->yabandpayPaymentHelper->getIsActiveiDeal();
+        if( $activeiDeal === true){
+            $config['payment'][IDeal::CODE]['isActive'] = true;
+            $config['payment'][IDeal::CODE]['title'] = Payment::IDEAL . $this->yabandpayPaymentHelper->getiDealPayDesc();
+        }else{
+            $config['payment'][IDeal::CODE]['isActive'] = false;
+        }
+
+        $activeSofortDigital = $this->yabandpayPaymentHelper->getIsActiveSofortDigital();
+        if( $activeSofortDigital === true){
+            $config['payment'][SofortDigital::CODE]['isActive'] = true;
+            $config['payment'][SofortDigital::CODE]['title'] = 'Sofort' . $this->yabandpayPaymentHelper->getSofortDigitalPayDesc();
+        }else{
+            $config['payment'][SofortDigital::CODE]['isActive'] = false;
+        }
+        //
+        // $activeSofortPhysical = $this->yabandpayPaymentHelper->getIsActiveSofortPhysical();
+        // if( $activeSofortPhysical === true){
+        //     $config['payment'][SofortPhysical::CODE]['isActive'] = true;
+        //     $config['payment'][SofortPhysical::CODE]['title'] = Payment::SOFORT_PHYSICAL . $this->yabandpayPaymentHelper->getSofortPhysicalPayDesc();
+        // }else{
+        //     $config['payment'][SofortPhysical::CODE]['isActive'] = false;
+        // }
+
+        $activeBancontact = $this->yabandpayPaymentHelper->getIsActiveBancontact();
+        if( $activeBancontact === true){
+            $config['payment'][Bancontact::CODE]['isActive'] = true;
+            $config['payment'][Bancontact::CODE]['title'] = Payment::BANCONTACT . $this->yabandpayPaymentHelper->getBancontactPayDesc();
+        }else{
+            $config['payment'][Bancontact::CODE]['isActive'] = false;
+        }
+
         return $config;
     }
 }

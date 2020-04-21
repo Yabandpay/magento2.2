@@ -34,6 +34,42 @@ define(
             );
         }
 
+        if (window.checkoutConfig.payment.yabandpay_ideal.isActive) {
+            rendererList.push(
+                {
+                    type: 'yabandpay_ideal',
+                    component: 'YaBandPay_Payment/js/view/payment/method-renderer/yabandpay_ideal-method'
+                }
+            );
+        }
+
+        if (window.checkoutConfig.payment.yabandpay_sofort_digital.isActive) {
+            rendererList.push(
+                {
+                    type: 'yabandpay_sofort_digital',
+                    component: 'YaBandPay_Payment/js/view/payment/method-renderer/yabandpay_sofort_digital-method'
+                }
+            );
+        }
+
+        // if (window.checkoutConfig.payment.yabandpay_sofort_physical.isActive) {
+        //     rendererList.push(
+        //         {
+        //             type: 'yabandpay_sofort_physical',
+        //             component: 'YaBandPay_Payment/js/view/payment/method-renderer/yabandpay_sofort_physical-method'
+        //         }
+        //     );
+        // }
+
+        if (window.checkoutConfig.payment.yabandpay_bancontact.isActive) {
+            rendererList.push(
+                {
+                    type: 'yabandpay_bancontact',
+                    component: 'YaBandPay_Payment/js/view/payment/method-renderer/yabandpay_bancontact-method'
+                }
+            );
+        }
+
         /** Add view logic here if needed */
         return Component.extend({});
     }
