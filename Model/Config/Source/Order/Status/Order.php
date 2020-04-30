@@ -17,6 +17,7 @@ class Order
     public function toOptionArray()
     {
         $statuses = [
+            'new' => 'New',
             Payment::PAY_PENDING => Payment::PAY_PENDING,
             'pending_payment' => 'Pending Payment',
             Payment::PAY_PROCESSING => Payment::PAY_PROCESSING,

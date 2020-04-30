@@ -343,9 +343,6 @@ class General extends AbstractHelper
         $notifyUrl = $this->getNotifyUrl();
         $redirectUrl = $this->getRedirectUrl();
 
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $customer = $objectManager->get(\Magento\Customer\Model\Session::class);
-
         try {
             $pay_url = $this->getApiInstance()->payment(
                 $paymentMethod,
@@ -357,7 +354,7 @@ class General extends AbstractHelper
                 $notifyUrl,
                 0,
                 json_encode(['magento_order_id' => $order->getId()]),
-                $customer->getCustomerData()->getEmail()
+                $order->getCustomerEmail()
             );
         } catch (\Exception $e){
             $error_hint_url = 'https://partner.yabandpay.com/payments/error?message='.\urlencode($e->getMessage());
