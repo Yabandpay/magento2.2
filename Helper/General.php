@@ -421,7 +421,7 @@ class General extends AbstractHelper
                 0,
                 json_encode([
                     'magento_order_id' => $order->getId(),
-                    'plugin_version' => 'magento2.3-yabandpay1.4.7'
+                    'plugin_version' => 'magento2.2-yabandpay1.4.7'
                 ]),
                 $order->getCustomerEmail()
             );
