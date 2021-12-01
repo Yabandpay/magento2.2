@@ -38,6 +38,9 @@ use YaBandPay\Payment\Model\Visa;
 use YaBandPay\Payment\Model\MasterCard;
 use YaBandPay\Payment\Model\PayPal;
 use YaBandPay\Payment\Model\Unionpay;
+use YaBandPay\Payment\Model\UnionPayWap;
+use YaBandPay\Payment\Model\UnionPayCard;
+use YaBandPay\Payment\Model\UnionPayQuickPass;
 
 /**
  * Class General
@@ -74,6 +77,16 @@ class General extends AbstractHelper
     const YABANDPAY_PAYPAL_DESC = 'payment/' . self::MODULE_CODE . '/paypal_desc';
     const YABANDPAY_UNIONPAY_ACTIVE = 'payment/' . self::MODULE_CODE . '/unionpay_active';
     const YABANDPAY_UNIONPAY_DESC = 'payment/' . self::MODULE_CODE . '/unionpay_desc';
+
+    const YABANDPAY_UNIONPAYWAP_ACTIVE = 'payment/' . self::MODULE_CODE . '/unionpaywap_active';
+    const YABANDPAY_UNIONPAYWAP_DESC = 'payment/' . self::MODULE_CODE . '/unionpaywap_desc';
+
+    const YABANDPAY_UNIONPAYCARD_ACTIVE = 'payment/' . self::MODULE_CODE . '/unionpaycard_active';
+    const YABANDPAY_UNIONPAYCARD_DESC = 'payment/' . self::MODULE_CODE . '/unionpaycard_desc';
+
+    const YABANDPAY_UNIONPAYQUICKPASS_ACTIVE = 'payment/' . self::MODULE_CODE . '/unionpayquickpass_active';
+    const YABANDPAY_UNIONPAYQUICKPASS_DESC = 'payment/' . self::MODULE_CODE . '/unionpayquickpass_desc';
+
     const YABANDPAY_CURRENCY = 'payment/' . self::MODULE_CODE . '/currency';
     const YABANDPAY_FEE = 'payment/' . self::MODULE_CODE . '/fee';
     const YABANDPAY_AUTO_EMAIL = 'payment/' . self::MODULE_CODE . '/auto_send_email';
@@ -322,6 +335,41 @@ class General extends AbstractHelper
         return ' ' . $this->getStoreConfig(self::YABANDPAY_UNIONPAY_DESC);
     }
 
+
+    public function getIsActiveUnionPayWap()
+    {
+        return (bool)$this->getStoreConfig(self::YABANDPAY_UNIONPAYWAP_ACTIVE);
+    }
+
+    public function getUnionPayWapPayDesc()
+    {
+        return ' ' . $this->getStoreConfig(self::YABANDPAY_UNIONPAYWAP_DESC);
+    }
+
+    public function getIsActiveUnionPayCard()
+    {
+        return (bool)$this->getStoreConfig(self::YABANDPAY_UNIONPAYCARD_ACTIVE);
+    }
+
+    public function getUnionPayCardPayDesc()
+    {
+        return ' ' . $this->getStoreConfig(self::YABANDPAY_UNIONPAYCARD_DESC);
+    }
+
+    public function getIsActiveUnionPayQuickPass()
+    {
+        return (bool)$this->getStoreConfig(self::YABANDPAY_UNIONPAYQUICKPASS_ACTIVE);
+    }
+
+    public function getUnionPayQuickPassPayDesc()
+    {
+        return ' ' . $this->getStoreConfig(self::YABANDPAY_UNIONPAYQUICKPASS_DESC);
+    }
+
+
+
+
+
     public function getPayCurrency()
     {
         return $this->getStoreConfig(self::YABANDPAY_CURRENCY);
@@ -393,10 +441,19 @@ class General extends AbstractHelper
                 $paymentMethod = Payment::MASTERCARD;
                 break;
             case PayPal::CODE:
-                    $paymentMethod = Payment::PAYPAL;
-                    break;
+                $paymentMethod = Payment::PAYPAL;
+                break;
             case Unionpay::CODE:
+                $paymentMethod = Payment::UNION;
+                break;
+            case UnionPayWap::CODE:
+                $paymentMethod = Payment::UNIONPAYWAP;
+                break;
+            case UnionPayCard::CODE:
                 $paymentMethod = Payment::UNIONPAY;
+                break;
+            case UnionPayQuickPass::CODE:
+                $paymentMethod = Payment::UNIONPAYQUICKPASS;
                 break;
             default:
                 echo '不存在的支付方式CODE $paymentMethodCode = '.$paymentMethodCode;
@@ -421,7 +478,7 @@ class General extends AbstractHelper
                 0,
                 json_encode([
                     'magento_order_id' => $order->getId(),
-                    'plugin_version' => 'magento2.2-yabandpay1.4.7'
+                    'plugin_version' => 'magento2.2-yabandpay1.4.9'
                 ]),
                 $order->getCustomerEmail()
             );

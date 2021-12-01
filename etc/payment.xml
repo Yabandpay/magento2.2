@@ -38,5 +38,14 @@
         <method name="yabandpay_unionpay">
             <allow_multiple_address>1</allow_multiple_address>
         </method>
+        <method name="yabandpay_unionpaywap">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="yabandpay_unionpaycard">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
+        <method name="yabandpay_unionpayquickpass">
+            <allow_multiple_address>1</allow_multiple_address>
+        </method>
     </methods>
 </payment>

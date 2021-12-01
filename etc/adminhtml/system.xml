@@ -77,6 +77,7 @@
                 <field id="paypal_desc" translate="label" type="text" sortOrder="36" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>PayPal Description</label>
                 </field>
+
                 <field id="unionpay_active" translate="label" type="select" sortOrder="37" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Unionpay Enabled</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -84,11 +85,37 @@
                 <field id="unionpay_desc" translate="label" type="text" sortOrder="38" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Unionpay Description</label>
                 </field>
-                <field id="pending_status" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0">
+
+                <field id="unionpaywap_active" translate="label" type="select" sortOrder="39" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>UnionPayWap Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="unionpaywap_desc" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UnionPayWap Description</label>
+                </field>
+
+                <field id="unionpaycard_active" translate="label" type="select" sortOrder="41" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>UnionPayCard Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="unionpaycard_desc" translate="label" type="text" sortOrder="42" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UnionPayCard Description</label>
+                </field>
+
+                <field id="unionpayquickpass_active" translate="label" type="select" sortOrder="43" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>UnionPayQuickPass Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="unionpayquickpass_desc" translate="label" type="text" sortOrder="44" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UnionPayQuickPass Description</label>
+                </field>
+
+
+                <field id="pending_status" translate="label" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>New Order Status</label>
                     <source_model>YaBandPay\Payment\Model\Config\Source\Order\Status\Order</source_model>
                 </field>
-                <field id="order_paid_status" translate="label" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="order_paid_status" translate="label" type="select" sortOrder="46" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Payment Completed Status</label>
                     <source_model>YaBandPay\Payment\Model\Config\Source\Order\Status\Order</source_model>
                 </field>

@@ -106,6 +106,35 @@ define(
             );
         }
 
+
+        if (window.checkoutConfig.payment.yabandpay_unionpaywap.isActive) {
+            rendererList.push(
+                {
+                    type: 'yabandpay_unionpaywap',
+                    component: 'YaBandPay_Payment/js/view/payment/method-renderer/yabandpay_unionpaywap-method'
+                }
+            );
+        }
+
+
+        if (window.checkoutConfig.payment.yabandpay_unionpaycard.isActive) {
+            rendererList.push(
+                {
+                    type: 'yabandpay_unionpaycard',
+                    component: 'YaBandPay_Payment/js/view/payment/method-renderer/yabandpay_unionpaycard-method'
+                }
+            );
+        }
+
+        if (window.checkoutConfig.payment.yabandpay_unionpayquickpass.isActive) {
+            rendererList.push(
+                {
+                    type: 'yabandpay_unionpayquickpass',
+                    component: 'YaBandPay_Payment/js/view/payment/method-renderer/yabandpay_unionpayquickpass-method'
+                }
+            );
+        }
+
         /** Add view logic here if needed */
         return Component.extend({});
     }

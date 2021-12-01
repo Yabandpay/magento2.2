@@ -173,6 +173,30 @@ class PaymentConfigProvider implements ConfigProviderInterface
             $config['payment'][Unionpay::CODE]['isActive'] = false;
         }
 
+        $activeUnionPayWap = $this->yabandpayPaymentHelper->getIsActiveUnionPayWap();
+        if( $activeUnionPayWap === true){
+            $config['payment'][UnionPayWap::CODE]['isActive'] = true;
+            $config['payment'][UnionPayWap::CODE]['title'] = 'UnionPayWap' . $this->yabandpayPaymentHelper->getUnionPayWapPayDesc();
+        }else{
+            $config['payment'][UnionPayWap::CODE]['isActive'] = false;
+        }
+
+        $activeUnionPayCard = $this->yabandpayPaymentHelper->getIsActiveUnionPayCard();
+        if( $activeUnionPayCard === true){
+            $config['payment'][UnionPayCard::CODE]['isActive'] = true;
+            $config['payment'][UnionPayCard::CODE]['title'] = 'UnionPayCard' . $this->yabandpayPaymentHelper->getUnionPayCardPayDesc();
+        }else{
+            $config['payment'][UnionPayCard::CODE]['isActive'] = false;
+        }
+
+        $activeUnionPayQuickPass = $this->yabandpayPaymentHelper->getIsActiveUnionPayQuickPass();
+        if( $activeUnionPayQuickPass === true){
+            $config['payment'][UnionPayQuickPass::CODE]['isActive'] = true;
+            $config['payment'][UnionPayQuickPass::CODE]['title'] = 'UnionPayQuickPass' . $this->yabandpayPaymentHelper->getUnionPayQuickPassPayDesc();
+        }else{
+            $config['payment'][UnionPayQuickPass::CODE]['isActive'] = false;
+        }
+
         return $config;
     }
 }
