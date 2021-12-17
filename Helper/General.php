@@ -395,10 +395,12 @@ class General extends AbstractHelper
      */
     public function addTolog($type, $data)
     {
-        if($type == 'error'){
-            $this->logger->addErrorLog($data);
-        }else{
-            $this->logger->addInfoLog($data);
+        if($this->getDebug()){
+            if($type == 'error'){
+                $this->logger->addErrorLog($data);
+            }else{
+                $this->logger->addInfoLog($data);
+            }
         }
     }
 
@@ -478,7 +480,7 @@ class General extends AbstractHelper
                 0,
                 json_encode([
                     'magento_order_id' => $order->getId(),
-                    'plugin_version' => 'magento2.2-yabandpay1.4.9'
+                    'plugin_version' => 'magento2.2-yabandpay1.4.10'
                 ]),
                 $order->getCustomerEmail()
             );
@@ -560,6 +562,11 @@ class General extends AbstractHelper
     public function getAuthInvoice()
     {
         return (bool)$this->getStoreConfig(self::YABANDPAY_AUTO_INVOICE);
+    }
+
+    public function getDebug()
+    {
+        return (bool)$this->getStoreConfig(self::YABANDPAY_DEBUG);
     }
 
     /**
